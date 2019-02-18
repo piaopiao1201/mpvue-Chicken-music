@@ -10,7 +10,7 @@
 
 项目演示地址:
 
-![](.\\src.png)
+![](src.png)
 
 ## Build Setup
 
