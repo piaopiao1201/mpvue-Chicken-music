@@ -1,0 +1,13 @@
+{
+  "pages": [
+		"pages/index/main",
+    "pages/home/main",
+		"pages/singer-detail/main"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#222",
+    "navigationBarTitleText": "chicken-music",
+    "navigationBarTextStyle": "white"
+  }
+}

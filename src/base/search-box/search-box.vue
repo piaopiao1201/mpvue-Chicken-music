@@ -1,0 +1,89 @@
+<template>
+  <div class="search-box">
+    <i class="icon-search"></i>
+    <input ref="query" class="box" :placeholder="placeholder" v-model="query" :focus="focus" @focus="handleFocus"/>
+    <i @click="clear" v-show="query" class="icon-dismiss"></i>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+import { debounce,test} from 'common/js/util'
+
+export default {
+  props: {
+    placeholder: {
+      type: String,
+      default: '搜索歌曲、歌手'
+    }
+  },
+  data() {
+    return {
+			query: '',
+			focus:false
+    }
+  },
+  methods: {
+    clear() {
+      this.query = ''
+    },
+    setQuery(query) {
+      this.query = query
+    },
+    blur() {
+			// this.$refs.query.blur()
+			this.focus=false;
+		},
+		handleFocus(){
+			// console.log(this.focus);
+		}
+  },
+  created() {
+    // 监听 query，当 query 改变时传递 query 字符
+    this.$watch('query', debounce((newQuery) => {
+			// console.log(this);
+      this.$emit('query', newQuery)
+		}, 200));
+		
+		// test(function(sa){
+
+		// })
+	},
+	watch:{
+		// query(newQuery){
+		// 	debounce((newQuery) => {
+    //   	this.$emit('query', newQuery)
+   	// 	}, 200);
+		// 	// this.$emit('query', newQuery)
+		// }
+	}
+}
+</script>
+
+<style scoped lang="stylus" rel="stylesheet/stylus">
+@import '~common/stylus/variable'
+.search-box
+  display flex
+  align-items center
+  box-sizing border-box
+  width 100%
+  padding 0 6px
+  height 40px
+  background $color-highlight-background
+  border-radius 6px
+  touch-action none
+  .icon-search
+    font-size 24px
+    color $color-background
+  .box
+    flex 1
+    margin 0 5px
+    line-height 18px
+    background $color-highlight-background
+    color $color-text
+    font-size $font-size-medium
+    &::placeholder
+      color $color-text-d
+  .icon-dismiss
+    font-size 16px
+    color $color-background
+</style>
